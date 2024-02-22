@@ -1,5 +1,5 @@
 import { Box, Button, Container, Flex, Heading, Image, SimpleGrid, Stack, Text, useColorModeValue } from "@chakra-ui/react";
-import { FaSpotify, FaYoutube, FaFilm, FaShoppingCart } from "react-icons/fa";
+import { FaSpotify, FaYoutube, FaFilm, FaShoppingCart, FaPaypal } from "react-icons/fa";
 
 const SubscriptionCard = ({ service, icon, description, price }) => {
   return (
@@ -21,20 +21,35 @@ const SubscriptionCard = ({ service, icon, description, price }) => {
           {parseInt(price.replace("$", "")) * 1.5}
         </Text>
       </Stack>
-      <Button
-        w={"full"}
-        mt={8}
-        bg={useColorModeValue("#151f21", "gray.900")}
-        color={"white"}
-        rounded={"md"}
-        _hover={{
-          transform: "translateY(-2px)",
-          boxShadow: "lg",
-        }}
-      >
-        <FaShoppingCart />
-        <Text marginLeft={2}>Purchase</Text>
-      </Button>
+      <Stack spacing={3}>
+        <Button
+          w={"full"}
+          bg={useColorModeValue("#151f21", "gray.900")}
+          color={"white"}
+          rounded={"md"}
+          _hover={{
+            transform: "translateY(-2px)",
+            boxShadow: "lg",
+          }}
+        >
+          <FaShoppingCart />
+          <Text marginLeft={2}>Purchase</Text>
+        </Button>
+        <Button
+          w={"full"}
+          bg={useColorModeValue("blue.500", "blue.300")}
+          color={"white"}
+          rounded={"md"}
+          as="a"
+          href={`mailto:sender.lithuania@gmail.com?subject=Purchase%20Subscription&body=I%20would%20like%20to%20purchase%20the%20subscription%20for%20${service}.%20Please%20provide%20further%20instructions%20for%20payment%20through%20PayPal.`}
+          leftIcon={<FaPaypal />}
+          _hover={{
+            bg: useColorModeValue("blue.600", "blue.400"),
+          }}
+        >
+          Buy with PayPal
+        </Button>
+      </Stack>
     </Stack>
   );
 };
